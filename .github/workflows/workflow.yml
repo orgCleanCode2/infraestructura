@@ -13,7 +13,9 @@ on:
       
 jobs:  
   build:    
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.deploy-env || 'DEV' }}
+    
     steps:
       - name: Checkout código        
         uses: actions/checkout@v4
@@ -62,62 +64,11 @@ jobs:
           *
           */
           
-
-  deploy-dev:
-    runs-on: ubuntu-latest    
-    steps:
-      - name: Deploy to Dev Environment
+      - name: Deploy
         run: |
-          /*
-          * 
-          * 
-          Ramdom but usefull code
-          *
-          *
-          */
-
-      - name: Test Autonomous
-        uses: ./.github/actions/seleniumTests
-      
-      - name: Promote artifact
-        run: |
-          /*
-          * 
-          * 
-          Ramdom but usefull code
-          *
-          *
-          */
-
-  deploy-prod:
-    runs-on: ubuntu-latest
-    authorization: True
-    Required: ReleaseManagerTeam    
-    steps:
-      - name: Deploy to Prod Environment
-        run: |
-          /*
-          * 
-          * 
-          Ramdom but usefull code
-          *
-          *
-          */
-
-      - name: Promote artifact
-        run: |
-          /*
-          * 
-          * 
-          Ramdom but usefull code
-          *
-          *
-          */
-          
-
-
-          
-
-                
-
-    
+            if [ "${{ inputs.deploy-env }}" = "PRO" ]; then
+              echo "Desplegando en PRODUCCIÓN, esperando autorización del equipo de DevOps"
+            else
+              echo "Desplegando en ${{ inputs.deploy-env || 'DEV' }}"
+            fi
+  
