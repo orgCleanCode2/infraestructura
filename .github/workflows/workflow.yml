@@ -14,12 +14,6 @@ jobs:
     environment: ${{ inputs.deploy-env || 'DEV' }}
     
     steps:
-      - name: Validate deploy-env
-        run: |
-          if [ "${{ inputs.deploy-env }}" != "DEV" ] && [ "${{ inputs.deploy-env }}" != "PRO" ]; then
-            echo "Error: deploy-env debe ser DEV o PRO, se recibió: ${{ inputs.deploy-env }}"
-            exit 1
-          fi
 
       - name: Checkout código
         uses: actions/checkout@v4
@@ -45,6 +39,7 @@ jobs:
             echo "Error: ./dist directory not found. Build likely failed."
             exit 1
           fi
+        shell: bash
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
@@ -59,3 +54,4 @@ jobs:
           else
             echo "Desplegando en ${{ inputs.deploy-env || 'DEV' }}"
           fi
+        shell: bash
