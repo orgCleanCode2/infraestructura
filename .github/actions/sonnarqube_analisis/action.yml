@@ -4,6 +4,7 @@ runs:
   steps:
   - name: sonnarqube_analisis
     run: |
+      echo "Ejecuando sonnarqube"
       /*
       * 
       * 
