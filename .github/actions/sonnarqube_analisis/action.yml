@@ -5,11 +5,4 @@ runs:
   - name: sonnarqube_analisis
     run: |
       echo "Ejecuando sonnarqube"
-      /*
-      * 
-      * 
-      Ramdom but usefull code
-      *
-      *
-      */
     shell: bash
