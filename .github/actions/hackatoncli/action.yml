@@ -5,11 +5,4 @@ runs:
   - name: Install hackaton cli
     run: |
       echo "Ejecuando instalación de hackaton cli"
-      /*
-      * 
-      * 
-      Ramdom but usefull code
-      *
-      *
-      */ 
     shell: bash
