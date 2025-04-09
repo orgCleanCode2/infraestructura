@@ -4,6 +4,7 @@ runs:
   steps:
   - name: Install hackaton cli
     run: |
+      echo "Ejecuando configuración de hackaton cli"
       /*
       * 
       * 
