@@ -17,52 +17,36 @@ jobs:
     environment: ${{ inputs.deploy-env || 'DEV' }}
     
     steps:
-      - name: Checkout código        
+      - name: Checkout código #Estamos clonando el repositorio que llama, no "infraestructura"        
         uses: actions/checkout@v4
 
       - name: Install Hakcaton CLi        
-        uses: ./.github/actions/hackatoncli
+        uses: orgCleanCode2/infraestructura/.github/actions/hackatoncli@main
 
-      - name: Install Hakcaton CLi        
-        uses: ./.github/actions/configurenetwork
+      - name: Configure Hakcaton CLi        
+        uses: orgCleanCode2/infraestructura/.github/actions/configurenetwork@main
 
       - name: Static code analisis        
-        uses: ./.github/actions/sonnarqube_analisis
+        uses: orgCleanCode2/infraestructura/.github/actions/sonnarqube_analisis@main
 
       - name: Build App
-        run: |
-          echo "Construyendo aplicación..."
-          /*
-          * 
-          * 
-          Ramdom but usefull code
-          *
-          *
-          */
-          
+        uses: ./.github/actions/build
       
-      - name: Unit tests
-        run: |
-          echo "Testeando aplicación..."
-          /*
-          * 
-          * 
-          Ramdom but usefull code
-          *
-          *
-          */
-          
+      - name: Build App
+        uses: ./.github/actions/test
 
-      - name: Upload Artifact
-        need: Build App && Test App && Deploy App Dev == success
+      - name: Check if dist exists
         run: |
-          /*
-          * 
-          * 
-          Ramdom but usefull code
-          *
-          *
-          */
+          if [ ! -d "./dist" ]; then
+            echo "Error: ./dist directory not found. Build likely failed."
+            exit 1
+          fi
+      
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-build
+          path: ./dist
           
       - name: Deploy
         run: |
