@@ -1,4 +1,4 @@
-name: "General Workflow, import to all the repositories"
+name: "General Workflow"
 on:  
   workflow_call:
     inputs:
