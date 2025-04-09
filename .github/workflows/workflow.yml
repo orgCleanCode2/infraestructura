@@ -3,7 +3,7 @@ on:
   workflow_call:
     inputs:
       deploy-env:
-        description: Entorno sobre el que desplegar (valores permitidos: DEV o PRO)
+        description: Entorno sobre el que desplegar (DEV o PRO)
         required: true
         default: DEV
         type: string
