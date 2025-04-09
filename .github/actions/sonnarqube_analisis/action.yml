@@ -10,4 +10,5 @@ runs:
       Ramdom but usefull code
       *
       *
-      */ 
+      */
+    shell: bash
