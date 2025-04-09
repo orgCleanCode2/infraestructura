@@ -1,0 +1,13 @@
+name: "sonnarqube_analisis"
+runs:
+  using: "composite"
+  steps:
+  - name: sonnarqube_analisis
+    run: |
+      /*
+      * 
+      * 
+      Ramdom but usefull code
+      *
+      *
+      */ 
